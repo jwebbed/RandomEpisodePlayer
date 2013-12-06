@@ -11,6 +11,7 @@ namespace RandomEpisodePlayer
         static void Main(string[] args)
         {
             ShowManager manager = new ShowManager("J:\\TV Shows");
+            manager.Populate();
         }
     }
 }

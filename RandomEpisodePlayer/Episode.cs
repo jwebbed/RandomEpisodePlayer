@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 
@@ -11,17 +12,16 @@ namespace RandomEpisodePlayer
     {
         private string name;
         private string path;
-        private byte season;
-        private byte episode;
+        private int season;
+        private int episode;
         private int playCount;
+        private static Regex episodeName = new Regex("S[0-9][0-9]E[0-9][0-9]");
 
 
-        public Episode(string path, string name, byte season, byte episode)
+        public Episode(string path)
         {
             this.path = path;
-            this.name = name;
-            this.season = season;
-            this.episode = episode;
+            
         }
 
         public void play()

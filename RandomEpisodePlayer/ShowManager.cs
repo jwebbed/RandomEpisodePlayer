@@ -11,11 +11,20 @@ namespace RandomEpisodePlayer
     class ShowManager
     {
         private string basedir;
-        Regex episodeName = new Regex("S[0-9][0-9]E[0-9][0-9]");
+        
+        
+        private List<Show> shows;
 
         public ShowManager(string basedir)
         {
             this.basedir = basedir;
+            this.shows = new List<Show>();
+        }
+
+        public void Populate()
+        {
+            String[] folders = Directory.GetDirectories(this.basedir);
+            shows.Add(new Show(folders[8]));
         }
 
     }
