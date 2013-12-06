@@ -13,6 +13,7 @@ namespace RandomEpisodePlayer
         private string path;
         private byte season;
         private byte episode;
+        private int playCount;
 
 
         public Episode(string path, string name, byte season, byte episode)
@@ -25,6 +26,7 @@ namespace RandomEpisodePlayer
 
         public void play()
         {
+            this.playCount++;
             System.Diagnostics.Process.Start(this.path);
         }
     }

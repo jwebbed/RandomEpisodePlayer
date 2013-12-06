@@ -68,5 +68,20 @@ namespace RandomEpisodePlayer
         {
             return (IEnumerator) this.GetEnumerator();
         }
+
+        public void playRandomEpisode(){
+            Random r = new Random();
+            this.playEpisode(r.Next(this.length));
+
+        }
+
+        public void playEpisode(byte index)
+        {
+            this.playEpisode((int)index);
+        }
+        public void playEpisode(int index)
+        {
+            this.episodes[index].play();
+        }
     }
 }

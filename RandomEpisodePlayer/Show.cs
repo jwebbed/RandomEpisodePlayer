@@ -20,6 +20,7 @@ namespace RandomEpisodePlayer
             this.len = len;
             this.name = name;
         }
+
         public void Add(Season item)
         {
             this.seasons[item.number] = item;
