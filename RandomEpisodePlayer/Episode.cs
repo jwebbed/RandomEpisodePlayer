@@ -10,17 +10,17 @@ namespace RandomEpisodePlayer
     class Episode
     {
         private string name;
-        private string path;        
+        private string path;
+        private byte season;
+        private byte episode;
 
-        public Episode(string path)
-        {
-            this.path = path;
-        }
 
-        public Episode(string path, string name)
+        public Episode(string path, string name, byte season, byte episode)
         {
             this.path = path;
             this.name = name;
+            this.season = season;
+            this.episode = episode;
         }
 
         public void play()
