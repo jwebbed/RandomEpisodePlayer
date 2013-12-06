@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace RandomEpisodePlayer
+namespace tvlib
 {
-    class ShowManager
+    public class ShowManager
     {
         private string basedir;
         

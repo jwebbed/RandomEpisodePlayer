@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 
-namespace RandomEpisodePlayer
+namespace tvlib
 {
     class Episode
     {
