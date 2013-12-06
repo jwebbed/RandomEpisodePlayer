@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RandomEpisodePlayer
 {
-    class Season : IEnumerable<Episode>
+    class Season : IEnumerable
     {
         private int number;
         private List<Episode> episodes;
@@ -29,7 +30,7 @@ namespace RandomEpisodePlayer
             this.episodes.Add(e);
         }
 
-        public IEnumerator<Episode> GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
             return this.episodes.GetEnumerator();
         }

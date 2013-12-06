@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace RandomEpisodePlayer
 {
-    class Program
+    class ShowManager
     {
-        static void Main(string[] args)
+        private string basedir;
+
+        public ShowManager(string basedir)
         {
-            ShowManager manager = new ShowManager("J:\\TV Shows");
-            
+            this.basedir = basedir;
         }
     }
 }
