@@ -14,7 +14,7 @@ namespace tvlib
         private Season[] seasons;
         private string _name;
         private int len;
-        private static Regex reg = new Regex("Season [0-9]*");      
+        private static Regex reg = new Regex("Season [1-9][0-9]*");      
 
         public Show(string path)
         {
