@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace RandomEpisodePlayer
 {
@@ -11,14 +13,21 @@ namespace RandomEpisodePlayer
     {
         private Season[] seasons;
         private string name;
-        private byte len;
+        private int len;
+        private static Regex season = new Regex("Season");
 
 
-        public Show(string name, byte len)
+        public Show(string name, int len)
         {
             this.seasons = new Season[len];
             this.len = len;
             this.name = name;
+        }
+
+        public Show(string path)
+        {
+            String[] seasons = Directory.GetDirectories(path);
+            this.len = seasons.Length;
         }
 
         public void Add(Season item)
@@ -71,5 +80,31 @@ namespace RandomEpisodePlayer
         {
             return (IEnumerator)this.GetEnumerator();
         }
+
+        public void playRandomSeason()
+        {
+            Random r = new Random();
+            playRandomFromSeason(r.Next(this.len));
+        }
+
+        public void playRandomFromSeason(int index)
+        {
+            this.seasons[index].playRandomEpisode();
+        }
+
+        public void PlayRandomEpisode()
+        {
+            List<Episode> l = new List<Episode>();
+            foreach (Season s in this)
+            {
+                foreach (Episode e in s)
+                {
+                    l.Add(e);
+                }
+            }
+            Random r = new Random();
+            l[r.Next(l.Count)].play();
+        }
+
     }
 }

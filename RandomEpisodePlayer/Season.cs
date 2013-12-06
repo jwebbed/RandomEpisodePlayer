@@ -9,11 +9,11 @@ namespace RandomEpisodePlayer
 {
     class Season : ICollection<Episode>
     {
-        private byte _number;
+        private int _number;
         private List<Episode> episodes;
         private int length;
 
-        public byte number { get { return this._number; } }
+        public int number { get { return this._number; } }
 
         List<Episode> Episodes { get { return this.episodes; } }
 
@@ -75,10 +75,6 @@ namespace RandomEpisodePlayer
 
         }
 
-        public void playEpisode(byte index)
-        {
-            this.playEpisode((int)index);
-        }
         public void playEpisode(int index)
         {
             this.episodes[index].play();
