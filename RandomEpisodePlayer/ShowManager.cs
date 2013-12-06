@@ -11,7 +11,7 @@ namespace RandomEpisodePlayer
     class ShowManager
     {
         private string basedir;
-        Regex regex = new Regex("S[0-9][0-9]E[0-9][0-9]");
+        Regex episodeName = new Regex("S[0-9][0-9]E[0-9][0-9]");
 
         public ShowManager(string basedir)
         {

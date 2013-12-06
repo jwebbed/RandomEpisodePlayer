@@ -9,15 +9,17 @@ namespace RandomEpisodePlayer
 {
     class Season : ICollection<Episode>
     {
-        private int number;
+        private byte _number;
         private List<Episode> episodes;
         private int length;
 
+        public byte number { get { return this._number; } }
+
         List<Episode> Episodes { get { return this.episodes; } }
 
-        public Season(int number, int length)
+        public Season(byte number, byte length)
         {
-            this.number = number;
+            this._number = number;
             this.episodes = new List<Episode>();
             this.length = length;
         }

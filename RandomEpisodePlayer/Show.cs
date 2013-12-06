@@ -9,23 +9,25 @@ namespace RandomEpisodePlayer
 {
     class Show : ICollection<Season>
     {
-        private List<Season> seasons;
+        private Season[] seasons;
         private string name;
+        private byte len;
 
 
-        public Show(string name)
+        public Show(string name, byte len)
         {
-            this.seasons = new List<Season>();
+            this.seasons = new Season[len];
+            this.len = len;
             this.name = name;
         }
         public void Add(Season item)
         {
-            this.seasons.Add(item);
+            this.seasons[item.number] = item;
         }
 
         public void Clear()
         {
-            this.seasons = new List<Season>();
+            this.seasons = new Season[len];
         }
 
         public bool Contains(Season item)
@@ -40,7 +42,7 @@ namespace RandomEpisodePlayer
 
         public int Count
         {
-            get { return this.seasons.Count; }
+            get { return (int) this.len; }
         }
 
         public bool IsReadOnly
@@ -50,12 +52,18 @@ namespace RandomEpisodePlayer
 
         public bool Remove(Season item)
         {
-            return this.seasons.Remove(item);
+            if (this.seasons[item.number] == item)
+            {
+                this.seasons[item.number] = null;
+                return true;
+            }
+            else { return false; }
+            
         }
 
         public IEnumerator<Season> GetEnumerator()
         {
-            return this.seasons.GetEnumerator();
+            return (IEnumerator<Season>) this.seasons.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
