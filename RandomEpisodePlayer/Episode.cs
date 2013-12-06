@@ -21,6 +21,7 @@ namespace RandomEpisodePlayer
         public Episode(string path)
         {
             this.path = path;
+            Match m = episodeName.Match(this.path);
             
         }
 

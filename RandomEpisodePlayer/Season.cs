@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace RandomEpisodePlayer
 {
@@ -12,16 +14,32 @@ namespace RandomEpisodePlayer
         private int _number;
         private List<Episode> episodes;
         private int length;
+        private string path;
+        private static Regex num = new Regex("[0-9]*");
 
         public int number { get { return this._number; } }
 
         List<Episode> Episodes { get { return this.episodes; } }
 
-        public Season(byte number, byte length)
+        public Season(int number, int length)
         {
             this._number = number;
-            this.episodes = new List<Episode>();
+            
             this.length = length;
+        }
+
+        public Season(string path, int num)
+        {
+            this.episodes = new List<Episode>();
+            this.path = path;
+            this._number = num;
+            String[] episodes = Directory.GetFiles(this.path);
+            foreach (String e in episodes)
+            {
+                this.episodes.Add(new Episode(e));
+                this.length++;
+            }
+
         }
 
         public IEnumerator<Episode> GetEnumerator()

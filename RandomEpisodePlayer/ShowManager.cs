@@ -26,6 +26,5 @@ namespace RandomEpisodePlayer
             String[] folders = Directory.GetDirectories(this.basedir);
             shows.Add(new Show(folders[8]));
         }
-
     }
 }

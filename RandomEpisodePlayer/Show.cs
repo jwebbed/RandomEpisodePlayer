@@ -14,7 +14,9 @@ namespace RandomEpisodePlayer
         private Season[] seasons;
         private string name;
         private int len;
-        private static Regex season = new Regex("Season");
+        private static Regex reg = new Regex("Season [0-9]*");
+        private static Regex num = new Regex("[0-9]");
+        
 
 
         public Show(string name, int len)
@@ -26,8 +28,17 @@ namespace RandomEpisodePlayer
 
         public Show(string path)
         {
-            String[] seasons = Directory.GetDirectories(path);
-            this.len = seasons.Length;
+            String[] dirs = Directory.GetDirectories(path);
+            foreach (string s in dirs) { if (Show.reg.IsMatch(s)) { this.len++; } }
+            this.seasons = new Season[this.len];
+            foreach (string s in dirs)
+            {
+                if (Show.reg.IsMatch(s))
+                {
+                    int i = Convert.ToInt32(Show.num.Match(s).ToString());
+                    this.seasons[i - 1] = new Season(s, i);
+                }
+            }
         }
 
         public void Add(Season item)
@@ -104,6 +115,14 @@ namespace RandomEpisodePlayer
             }
             Random r = new Random();
             l[r.Next(l.Count)].play();
+        }
+
+        public Season this[int index]
+        {
+            get
+            {
+                return this.seasons[index - 1];
+            }
         }
 
     }
