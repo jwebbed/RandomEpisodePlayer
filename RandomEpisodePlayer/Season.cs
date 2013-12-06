@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace RandomEpisodePlayer
 {
-    //Need to complete implementation
-    class Season : IList<Episode>
+    class Season : ICollection<Episode>
     {
         private int number;
         private List<Episode> episodes;
@@ -23,51 +22,19 @@ namespace RandomEpisodePlayer
             this.length = length;
         }
 
-        public void addEpisode(Episode e)
-        {
-            this.episodes.Add(e);
-        }
-
         public IEnumerator<Episode> GetEnumerator()
         {
             return this.episodes.GetEnumerator();
         }
 
-        public int IndexOf(Episode item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(int index, Episode item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveAt(int index)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Episode this[int index]
-        {
-            get
-            {
-                return this.episodes[index];
-            }
-            set
-            {
-                this.episodes[index] = value;
-            }
-        }
-
         public void Add(Episode item)
         {
-            throw new NotImplementedException();
+            this.episodes.Add(item);
         }
 
         public void Clear()
         {
-            this.episodes.Clear();
+            this.episodes = new List<Episode>();
         }
 
         public bool Contains(Episode item)
@@ -87,7 +54,7 @@ namespace RandomEpisodePlayer
 
         public bool IsReadOnly
         {
-            get { return false;  }
+            get { return false; }
         }
 
         public bool Remove(Episode item)
@@ -97,7 +64,7 @@ namespace RandomEpisodePlayer
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return (IEnumerator)this.GetEnumerator();
+            return (IEnumerator) this.GetEnumerator();
         }
     }
 }
