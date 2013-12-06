@@ -11,20 +11,21 @@ namespace tvlib
     public class ShowManager
     {
         private string basedir;
-        
-        
-        private List<Show> shows;
+
+
+        private Dictionary<string, Show> shows;
 
         public ShowManager(string basedir)
         {
             this.basedir = basedir;
-            this.shows = new List<Show>();
+            this.shows = new Dictionary<string, Show>();
         }
 
         public void Populate()
         {
             String[] folders = Directory.GetDirectories(this.basedir);
-            shows.Add(new Show(folders[8]));
+            Show x = new Show(folders[8]);
+            this.shows.Add(x.name, x);
         }
     }
 }

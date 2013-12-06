@@ -12,22 +12,13 @@ namespace tvlib
     class Show : ICollection<Season>
     {
         private Season[] seasons;
-        private string name;
+        private string _name;
         private int len;
-        private static Regex reg = new Regex("Season [0-9]*");
-        private static Regex num = new Regex("[0-9]");
-        
-
-
-        public Show(string name, int len)
-        {
-            this.seasons = new Season[len];
-            this.len = len;
-            this.name = name;
-        }
+        private static Regex reg = new Regex("Season [0-9]*");      
 
         public Show(string path)
         {
+            this._name = Path.GetFileName(path);
             String[] dirs = Directory.GetDirectories(path);
             foreach (string s in dirs) { if (Show.reg.IsMatch(s)) { this.len++; } }
             this.seasons = new Season[this.len];
@@ -35,7 +26,7 @@ namespace tvlib
             {
                 if (Show.reg.IsMatch(s))
                 {
-                    int i = Convert.ToInt32(Show.num.Match(s).ToString());
+                    int i = Convert.ToInt32(Show.reg.Match(s).ToString().Substring(7));
                     this.seasons[i - 1] = new Season(s, i);
                 }
             }
@@ -125,5 +116,6 @@ namespace tvlib
             }
         }
 
+        public String name { get { return this._name; } }
     }
 }
