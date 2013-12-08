@@ -19,7 +19,7 @@ namespace tvlib
 
         public int number { get { return this._number; } }
 
-        List<Episode> Episodes { get { return this.episodes; } }
+        List<Episode> Episodes { internal get { return this.episodes; } }
 
         public Season(int number, int length)
         {

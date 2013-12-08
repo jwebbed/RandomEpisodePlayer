@@ -13,6 +13,7 @@ namespace RandomEpisodePlayer
         {
             ShowManager manager = new ShowManager("J:\\TV Shows");
             manager.Populate();
+            manager.playRandomEpisode("Community");
         }
     }
 }

@@ -27,5 +27,11 @@ namespace tvlib
             Show x = new Show(folders[8]);
             this.shows.Add(x.name, x);
         }
+
+        public void playRandomEpisode(string show)
+        {
+            Show s = this.shows[show];
+            s.PlayRandomEpisode();
+        }
     }
 }

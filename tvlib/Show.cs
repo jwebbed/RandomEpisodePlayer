@@ -89,9 +89,15 @@ namespace tvlib
             playRandomFromSeason(r.Next(this.len));
         }
 
+        /// <summary>
+        /// Plays a random episode from given season
+        /// </summary>
+        /// <param name="index">
+        /// The number of the seasons to play a random episode from
+        /// </param>
         public void playRandomFromSeason(int index)
         {
-            this.seasons[index].playRandomEpisode();
+            this.seasons[index - 1].playRandomEpisode();
         }
 
         public void PlayRandomEpisode()
