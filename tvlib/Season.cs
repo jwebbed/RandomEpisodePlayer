@@ -13,13 +13,13 @@ namespace tvlib
     {
         private int _number;
         private List<Episode> episodes;
-        private int length;
         private string path;
         private static Regex num = new Regex("[0-9]*");
 
-        public int number { get { return this._number; } }
+        private int length { get { return this.episodes.Count; }}
 
-        List<Episode> Episodes { get { return this.episodes; } }
+        public int number { get { return this._number; } }
+        public List<Episode> Episodes { get { return this.episodes; } }
 
         public Season(string path, int num)
         {
@@ -30,7 +30,6 @@ namespace tvlib
             foreach (String e in episodes)
             {
                 this.episodes.Add(new Episode(e));
-                this.length++;
             }
 
         }

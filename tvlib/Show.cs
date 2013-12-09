@@ -102,22 +102,28 @@ namespace tvlib
 
         public void PlayRandomEpisode()
         {
-            List<Episode> l = new List<Episode>();
+            int epi = 0;
             foreach (Season s in this)
             {
-                foreach (Episode e in s)
-                {
-                    l.Add(e);
-                }
+                epi += s.Count;
+            }
+            List<Episode> l = new List<Episode>(epi);
+            foreach (Season s in this)
+            {
+                l.AddRange(s.Episodes);
             }
             Random r = new Random();
-            l[r.Next(l.Count)].play();
+            l[r.Next(epi)].play();
         }
 
         public Season this[int index]
         {
             get
             {
+                if (index < 1)
+                {
+                    throw new ArgumentOutOfRangeException("index", "It is impossible to have a zero or negative season number");
+                }
                 return this.seasons[index - 1];
             }
         }
