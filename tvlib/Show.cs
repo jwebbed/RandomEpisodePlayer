@@ -100,7 +100,7 @@ namespace tvlib
             this.seasons[index - 1].playRandomEpisode();
         }
 
-        public void PlayRandomEpisode()
+        public void PlayRandomEpisode(bool weighted = false)
         {
             int epi = 0;
             foreach (Season s in this)
@@ -112,8 +112,15 @@ namespace tvlib
             {
                 l.AddRange(s.Episodes);
             }
-            Random r = new Random();
-            l[r.Next(epi)].play();
+            if (weighted)
+            {
+                Show.WeightedRandom(l);
+            }
+            else
+            {
+                Random r = new Random();
+                l[r.Next(epi)].play();
+            }
         }
 
         public Season this[int index]
@@ -129,5 +136,45 @@ namespace tvlib
         }
 
         public string name { get { return this._name; } }
+
+        internal static void WeightedRandom(List<Episode> episodes, double weight = 0.5)
+        {
+            int max = 0;
+            foreach (Episode e in episodes){
+                if (e.playCount > max)
+                {
+                    max = e.playCount;
+                }
+            }
+            int[] plays = new int[max];
+            foreach (Episode e in episodes)
+            {
+                plays[e.playCount]++;
+            }
+            int i = 0;
+            double p = 0;
+            while (i < (max + 1))
+            {
+                p += (plays[i] * (Math.Pow(weight, (double)i)));
+                i++;
+            }
+            p = 1 / p;
+            foreach (Episode e in episodes)
+            {
+                e.setProb(p, weight);
+            }
+            Random r = new Random();
+            double target = r.NextDouble();
+            double current = 0;
+            foreach (Episode e in episodes)
+            {
+                current += e.prob;
+                if (current > target)
+                {
+                    e.play();
+                    break;
+                }
+            }
+        }
     }
 }

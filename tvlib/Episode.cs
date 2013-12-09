@@ -13,33 +13,38 @@ namespace tvlib
     {
         private string name;
         private string path;
-        private int season;
+        private int seasonNum;
         private int episode;
-        private int playCount;
+        private int _playCount;
         private static Regex episodeName = new Regex("S[0-9][1-9]E[0-9][1-9]");
-        private Season seasonObj;
+        private Season season;
 
-
+        public int playCount { get { return this._playCount; } }
+        public double prob { get; set; }
         public Episode(string path, Season obj)
         {
             this.path = path;
             Match m = episodeName.Match(this.path);
             String filename = Path.GetFileName(this.path);
             String data = Episode.episodeName.Match(filename).ToString();
-            this.season = Convert.ToInt32(data.Substring(1,2));
+            this.seasonNum = Convert.ToInt32(data.Substring(1,2));
             this.episode = Convert.ToInt32(data.Substring(5,2));
-            this.seasonObj = obj;
+            this.season = obj;
         }
 
         public void play()
         {
-            this.playCount++;
+            this._playCount++;
             System.Diagnostics.Process.Start(this.path);
         }
 
         public string ToString()
         {
-            return this.seasonObj.name + ".S" + this.season.ToString("00") + "E" + this.episode.ToString("00");            
+            return this.season.name + ".S" + this.seasonNum.ToString("00") + "E" + this.episode.ToString("00");            
+        }
+
+        public void setProb(double b, double weight){
+            this.prob = b * Math.Pow(weight, this.playCount);
         }
     }
 }
