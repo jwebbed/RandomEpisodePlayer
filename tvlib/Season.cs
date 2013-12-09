@@ -15,13 +15,14 @@ namespace tvlib
         private List<Episode> episodes;
         private string path;
         private static Regex num = new Regex("[0-9]*");
+        private Show show;
 
         private int length { get { return this.episodes.Count; }}
 
         public int number { get { return this._number; } }
         public List<Episode> Episodes { get { return this.episodes; } }
 
-        public Season(string path, int num)
+        public Season(string path, int num, Show show)
         {
             this.episodes = new List<Episode>();
             this.path = path;
@@ -29,8 +30,9 @@ namespace tvlib
             String[] episodes = Directory.GetFiles(this.path);
             foreach (String e in episodes)
             {
-                this.episodes.Add(new Episode(e));
+                this.episodes.Add(new Episode(e, this));
             }
+            this.show = show;
 
         }
 
@@ -89,5 +91,7 @@ namespace tvlib
         {
             this.episodes[index].play();
         }
+
+        public string name { get { return this.show.name; } }
     }
 }

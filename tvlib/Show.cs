@@ -27,7 +27,7 @@ namespace tvlib
                 if (Show.reg.IsMatch(s))
                 {
                     int i = Convert.ToInt32(Show.reg.Match(s).ToString().Substring(7));
-                    this.seasons[i - 1] = new Season(s, i);
+                    this.seasons[i - 1] = new Season(s, i, this);
                 }
             }
         }
@@ -128,6 +128,6 @@ namespace tvlib
             }
         }
 
-        public String name { get { return this._name; } }
+        public string name { get { return this._name; } }
     }
 }
