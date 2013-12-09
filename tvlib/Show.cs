@@ -11,7 +11,7 @@ namespace tvlib
 {
     class Show : ICollection<Season>
     {
-        private Season[] seasons;
+        private List<Season> seasons;
         private string _name;
         private int len;
         private static Regex reg = new Regex("Season [1-9][0-9]*");      
@@ -21,7 +21,7 @@ namespace tvlib
             this._name = Path.GetFileName(path);
             String[] dirs = Directory.GetDirectories(path);
             foreach (string s in dirs) { if (Show.reg.IsMatch(s)) { this.len++; } }
-            this.seasons = new Season[this.len];
+            this.seasons = new List<Season>(this.len);
             foreach (string s in dirs)
             {
                 if (Show.reg.IsMatch(s))
@@ -39,7 +39,7 @@ namespace tvlib
 
         public void Clear()
         {
-            this.seasons = new Season[len];
+            this.seasons.Clear();
         }
 
         public bool Contains(Season item)
@@ -75,8 +75,7 @@ namespace tvlib
 
         public IEnumerator<Season> GetEnumerator()
         {
-            List<Season> l = new List<Season>(this.seasons);
-            return l.GetEnumerator();
+            return this.seasons.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
