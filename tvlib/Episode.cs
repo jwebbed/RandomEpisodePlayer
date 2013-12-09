@@ -37,7 +37,7 @@ namespace tvlib
             this._playCount++;
             System.Diagnostics.Process.Start(this.path);
         }
-
+      
         public string ToString()
         {
             return this.season.name + ".S" + this.seasonNum.ToString("00") + "E" + this.episode.ToString("00");            

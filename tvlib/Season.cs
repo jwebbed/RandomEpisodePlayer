@@ -81,10 +81,16 @@ namespace tvlib
             return (IEnumerator) this.GetEnumerator();
         }
 
-        public void playRandomEpisode(){
-            Random r = new Random();
-            this.playEpisode(r.Next(this.length));
-
+        public void playRandomEpisode(bool weighted = false){
+            if (weighted)
+            {
+                Show.WeightedRandom(this.episodes);
+            }
+            else
+            {
+                Random r = new Random();
+                this.playEpisode(r.Next(this.length));
+            }
         }
 
         public void playEpisode(int index)
