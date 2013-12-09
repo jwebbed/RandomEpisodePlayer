@@ -75,7 +75,8 @@ namespace tvlib
 
         public IEnumerator<Season> GetEnumerator()
         {
-            return (IEnumerator<Season>) this.seasons.GetEnumerator();
+            List<Season> l = new List<Season>(this.seasons);
+            return l.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()

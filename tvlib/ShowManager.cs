@@ -24,7 +24,7 @@ namespace tvlib
         public void Populate()
         {
             String[] folders = Directory.GetDirectories(this.basedir);
-            Show x = new Show(folders[8]);
+            Show x = new Show(folders[7]);
             this.shows.Add(x.name, x);
         }
 
