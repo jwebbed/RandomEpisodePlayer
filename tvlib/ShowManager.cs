@@ -31,7 +31,7 @@ namespace tvlib
         public void playRandomEpisode(string show)
         {
             Show s = this.shows[show];
-            s.PlayRandomEpisode(false);
+            s.PlayRandomEpisode(true);
         }
     }
 }
