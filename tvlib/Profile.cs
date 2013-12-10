@@ -7,35 +7,48 @@ using System.Threading.Tasks;
 namespace tvlib
 {
 
-    
+
     internal class Profile
     {
         // inc lazy naming
-        private equality meh;
+
         List<Show> shows;
 
         public Profile()
         {
-            this.meh = new equality(true, false, true);
+
         }
 
-        private struct equality
+
+        private bool show = true;
+        private bool season = false;
+        private bool playCount = true;
+
+
+
+        public void play()
         {
-            private bool show;
-            private bool season;
-            private bool playCount;
-
-            public equality(bool show, bool season, bool play)
+            Random r = new Random();
+            if (this.show)
             {
-                this.show = show;
-                this.season = season;
-                this.playCount = play;
+                Show s = this.shows[r.Next(shows.Count)];
+                if (this.season)
+                {
+                    Season x = s[r.Next(s.Count)];
+                    x.playRandomEpisode(this.playCount);
+                }
+                else
+                {
+                    s.PlayRandomEpisode(this.playCount);
+                }
             }
+            else
+            {
 
-      
-            
-        }  
+            }
+        }
+
+
+
     }
-
-    
 }

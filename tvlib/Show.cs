@@ -83,7 +83,7 @@ namespace tvlib
             return (IEnumerator)this.GetEnumerator();
         }
 
-        public void playRandomSeason()
+        public void playRandomSeason(bool weighted = false)
         {
             Random r = new Random();
             playRandomFromSeason(r.Next(this.len));
@@ -97,10 +97,10 @@ namespace tvlib
         /// </param>
         public void playRandomFromSeason(int index)
         {
-            this.seasons[index - 1].playRandomEpisode();
+            this.seasons[index - 1].playRandomEpisode(false);
         }
 
-        public void PlayRandomEpisode(bool weighted = false)
+        public void PlayRandomEpisode(bool weighted)
         {
             int epi = 0;
             foreach (Season s in this)

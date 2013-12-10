@@ -81,7 +81,7 @@ namespace tvlib
             return (IEnumerator) this.GetEnumerator();
         }
 
-        public void playRandomEpisode(bool weighted = false){
+        public void playRandomEpisode(bool weighted){
             if (weighted)
             {
                 Show.WeightedRandom(this.episodes);
@@ -99,5 +99,7 @@ namespace tvlib
         }
 
         public string name { get { return this.show.name; } }
+
+        
     }
 }
