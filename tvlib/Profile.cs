@@ -10,8 +10,14 @@ namespace tvlib
     
     internal class Profile
     {
-        private equality equality;
+        // inc lazy naming
+        private equality meh;
+        List<Show> shows;
 
+        public Profile()
+        {
+            this.meh = new equality(true, false, true);
+        }
 
         private struct equality
         {
@@ -26,6 +32,7 @@ namespace tvlib
                 this.playCount = play;
             }
 
+      
             
         }  
     }
