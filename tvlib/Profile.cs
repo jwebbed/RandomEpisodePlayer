@@ -6,17 +6,20 @@ using System.Threading.Tasks;
 
 namespace tvlib
 {
-
-
     internal class Profile
     {
-        // inc lazy naming
+        
 
         List<Show> shows;
 
         public Profile()
         {
+            this.shows = new List<Show>();
+        }
 
+        public Profile(List<Show> shows)
+        {
+            this.shows = shows;
         }
 
 
@@ -44,7 +47,8 @@ namespace tvlib
             }
             else
             {
-
+               // create a list of all the episodes in the show
+               // play one at random or pseduorandomm
             }
         }
 
