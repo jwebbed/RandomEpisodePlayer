@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace tvlib
 {
-    class Season : ICollection<Episode>
+    internal class Season : ICollection<Episode>
     {
         private int _number;
         private List<Episode> episodes;

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace tvlib
 {
-    class Episode
+    internal class Episode
     {
         private string name;
         private string path;
