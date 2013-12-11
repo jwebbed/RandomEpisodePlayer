@@ -22,11 +22,10 @@ namespace tvlib
         public int number { get { return this._number; } }
         public List<Episode> Episodes { get { return this.episodes; } }
 
-        public Season(string path, int num, Show show)
+        public Season(string path,  Show show)
         {
             this.episodes = new List<Episode>();
             this.path = path;
-            this._number = num;
             String[] episodes = Directory.GetFiles(this.path);
             foreach (String e in episodes)
             {

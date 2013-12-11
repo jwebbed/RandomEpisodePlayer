@@ -26,8 +26,8 @@ namespace tvlib
             {
                 if (Show.reg.IsMatch(s))
                 {
-                    int i = Convert.ToInt32(Show.reg.Match(s).ToString().Substring(7));
-                    this.seasons[i - 1] = new Season(s, i, this);
+                    //int i = Convert.ToInt32(Show.reg.Match(s).ToString().Substring(7));
+                    this.seasons.Add(new Season(s, this));
                 }
             }
         }
@@ -146,7 +146,7 @@ namespace tvlib
                     max = e.playCount;
                 }
             }
-            int[] plays = new int[max];
+            int[] plays = new int[max + 1];
             foreach (Episode e in episodes)
             {
                 plays[e.playCount]++;

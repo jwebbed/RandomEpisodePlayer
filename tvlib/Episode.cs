@@ -27,8 +27,8 @@ namespace tvlib
             Match m = episodeName.Match(this.path);
             String filename = Path.GetFileName(this.path);
             String data = Episode.episodeName.Match(filename).ToString();
-            this.seasonNum = Convert.ToInt32(data.Substring(1,2));
-            this.episode = Convert.ToInt32(data.Substring(5,2));
+            /*this.seasonNum = Convert.ToInt32(data.Substring(1,2));
+            this.episode = Convert.ToInt32(data.Substring(4,2));*/
             this.season = obj;
         }
 
