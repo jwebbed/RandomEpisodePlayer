@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace tvlib
 {
+    [Serializable()]
     internal class Profile // NYFI
     {
         List<Show> shows;

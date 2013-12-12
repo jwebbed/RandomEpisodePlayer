@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace tvlib
 {
+    [Serializable()]
     public class Episode
     {
         private string name;

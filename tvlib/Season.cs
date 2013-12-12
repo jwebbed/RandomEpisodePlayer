@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace tvlib
 {
+    [Serializable()]
     public class Season : ICollection<Episode>
     {
         private int _number;

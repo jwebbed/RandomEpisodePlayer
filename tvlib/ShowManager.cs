@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace tvlib
 {
+    [Serializable()]
     public class ShowManager
     {
         private string basedir;
