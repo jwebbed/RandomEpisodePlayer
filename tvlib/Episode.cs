@@ -21,7 +21,7 @@ namespace tvlib
         private Season season;
 
         public int playCount { get { return this._playCount; } }
-        public double prob { get; set; }
+        public double prob { get; private set; }
         public Episode(string path, Season obj)
         {
             this.path = path;
@@ -40,7 +40,7 @@ namespace tvlib
         }
       
         
-        public string ToString()
+        public override string ToString()
         {
             return this.season.name + ".S" + this.seasonNum.ToString("00") + "E" + this.episode.ToString("00");            
         }
