@@ -21,7 +21,22 @@ namespace tvlib
         private Season season;
 
         public int playCount { get { return this._playCount; } }
-        public double prob { get; private set; }
+        private double _prob;
+
+        public double prob 
+        {   
+            get 
+            { 
+                double x = this._prob;
+                this._prob = 0;
+                return x; 
+            } 
+            private set 
+            { 
+                this._prob = value;
+            } 
+        }
+
         public Episode(string path, Season obj)
         {
             this.path = path;
