@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace tvlib
 
 
 
-        public void play()
+        public void playEpisode()
         {
             Random r = new Random();
             if (this.show)
@@ -46,8 +47,18 @@ namespace tvlib
             }
             else
             {
-               // create a list of all the episodes in the show
-               // play one at random or pseduorandomm
+                List<Episode> l = new List<Episode>();
+                foreach (Show s in this.shows)
+                {
+                    foreach (Season sea in s)
+                    {
+                        foreach (Episode e in sea)
+                        {
+                            l.Add(e);
+                        }
+                    }
+                }
+                Show.WeightedRandom(l);
             }
         }
 
