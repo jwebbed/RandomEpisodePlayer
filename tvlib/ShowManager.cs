@@ -26,13 +26,18 @@ namespace tvlib
         {
             String[] folders = Directory.GetDirectories(this.basedir);
             Show x = new Show(folders[7]);
-            this.shows.Add(x.name, x);
+            this.addShow(x);
         }
 
-        public void playRandomEpisode(string show)
+        public void playRandomEpisode(string show, bool weighted = true)
         {
             Show s = this.shows[show];
-            s.PlayRandomEpisode(true);
+            s.PlayRandomEpisode(weighted);
+        }
+
+        public void addShow(Show s)
+        {
+            this.shows.Add(s.name, s);
         }
     }
 }
