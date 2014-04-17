@@ -25,14 +25,30 @@ namespace tvlib
         public void Populate()
         {
             String[] folders = Directory.GetDirectories(this.basedir);
-            Show x = new Show(folders[7]);
-            this.addShow(x);
+            foreach (String s in folders)
+            {
+                Show x = new Show(s);
+                this.addShow(x);
+            }
+            
         }
 
         public void playRandomEpisode(string show, bool weighted = true)
         {
             Show s = this.shows[show];
             s.PlayRandomEpisode(weighted);
+        }
+
+        public Episode getRandomEpisode(string show)
+        {
+            return Show.GetWeightedRandom(this.shows[show].Episodes);
+        }
+
+        public Episode getRandomEpisode(List<String> shows)
+        {
+            List<Episode> l = new List<Episode>();
+            foreach (string s in shows) l.AddRange(this.shows[s].Episodes);
+            return Show.GetWeightedRandom(l);
         }
 
         public void addShow(Show s)

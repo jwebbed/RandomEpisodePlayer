@@ -13,7 +13,7 @@ namespace tvlib
     public class Episode
     {
         private string name;
-        private string path;
+        private string _path;
         private int seasonNum;
         private int episode;
         private int _playCount;
@@ -22,6 +22,9 @@ namespace tvlib
 
         public int playCount { get { return this._playCount; } }
         private double _prob;
+        public string path { get { return this._path; } }
+        public string filename { get { return Path.GetFileName(this._path); } }
+
 
         public double prob 
         {   
@@ -39,9 +42,9 @@ namespace tvlib
 
         public Episode(string path, Season obj)
         {
-            this.path = path;
-            Match m = episodeName.Match(this.path);
-            String filename = Path.GetFileName(this.path);
+            this._path = path;
+            Match m = episodeName.Match(this._path);
+            String filename = Path.GetFileName(this._path);
             String data = Episode.episodeName.Match(filename).ToString();
             /*this.seasonNum = Convert.ToInt32(data.Substring(1,2));
             this.episode = Convert.ToInt32(data.Substring(4,2));*/
@@ -51,7 +54,7 @@ namespace tvlib
         public void play()
         {
             this._playCount++;
-            System.Diagnostics.Process.Start(this.path);
+            System.Diagnostics.Process.Start(this._path);
         }
       
         
@@ -62,6 +65,11 @@ namespace tvlib
 
         public void setProb(double b, double weight){
             this.prob = b * Math.Pow(weight, this.playCount);
+        }
+
+        public void increasePlayCount()
+        {
+            this._playCount++;
         }
     }
 }

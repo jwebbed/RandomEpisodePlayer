@@ -22,7 +22,7 @@ namespace RandomEpisodePlayer
                 Stream ReadStream = File.OpenRead(FileName);
                 BinaryFormatter deserializer = new BinaryFormatter();
                 manager = (ShowManager)deserializer.Deserialize(ReadStream);
-                manager.playRandomEpisode("Community");
+                //manager.playRandomEpisode("Futurama");
                 ReadStream.Close();
 
                 Stream WriteStream = File.OpenWrite(FileName);
@@ -34,7 +34,7 @@ namespace RandomEpisodePlayer
             {
                 manager = new ShowManager("J:\\TV Shows");
                 manager.Populate();
-                manager.playRandomEpisode("Community");
+                //manager.playRandomEpisode("Futurama");
                 Stream s = File.Create(FileName);
                 BinaryFormatter serializer = new BinaryFormatter();
                 serializer.Serialize(s, manager);

@@ -79,6 +79,17 @@ namespace tvlib
             return this.seasons.GetEnumerator();
         }
 
+        public List<Episode> Episodes
+        {
+            get
+            {
+                int epi = 0;
+                foreach (Season s in this) epi += s.Count;
+                List<Episode> l = new List<Episode>(epi);
+                foreach (Season s in this) l.AddRange(s.Episodes);
+                return l;
+            }
+        }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return (IEnumerator)this.GetEnumerator();
@@ -103,16 +114,7 @@ namespace tvlib
 
         public void PlayRandomEpisode(bool weighted)
         {
-            int epi = 0;
-            foreach (Season s in this)
-            {
-                epi += s.Count;
-            }
-            List<Episode> l = new List<Episode>(epi);
-            foreach (Season s in this)
-            {
-                l.AddRange(s.Episodes);
-            }
+            List<Episode> l = this.Episodes;
             if (weighted)
             {
                 Show.WeightedRandom(l);
@@ -120,7 +122,7 @@ namespace tvlib
             else
             {
                 Random r = new Random();
-                l[r.Next(epi)].play();
+                l[r.Next(l.Count)].play();
             }
         }
 
@@ -140,8 +142,14 @@ namespace tvlib
 
         internal static void WeightedRandom(List<Episode> episodes, double weight = 0.5)
         {
+            Show.GetWeightedRandom(episodes, weight).play();
+        }
+
+        internal static Episode GetWeightedRandom(List<Episode> episodes, double weight = 0.5)
+        {
             int max = 0;
-            foreach (Episode e in episodes){
+            foreach (Episode e in episodes)
+            {
                 if (e.playCount > max)
                 {
                     max = e.playCount;
@@ -172,10 +180,10 @@ namespace tvlib
                 current += e.prob;
                 if (current > target)
                 {
-                    e.play();
-                    break;
+                    return e;
                 }
             }
+            throw new Exception();
         }
     }
 }
