@@ -46,6 +46,8 @@ namespace nVLC_Demo_WPF
         {
             InitializeComponent();
 
+            this.KeyDown += this.KeyPress;
+
             System.Windows.Forms.Panel p = new System.Windows.Forms.Panel();
             p.BackColor = System.Drawing.Color.Black;
             windowsFormsHost1.Child = p;
@@ -66,6 +68,14 @@ namespace nVLC_Demo_WPF
             this.show = "Futurama";
             this.loadManager();
             this.playEpisode();
+        }
+
+        private void KeyPress(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Space)
+            {
+                this.m_player.Pause();
+            }
         }
 
         void Events_PlayerStopped(object sender, EventArgs e)
